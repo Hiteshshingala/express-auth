@@ -11,9 +11,10 @@ router.get('/', function (req, res, next) {
 
 router.post('/register',  async function (req, res, next) {
   // create a new promise inside of the async function
-  let result = await AuthController.register(req, res);
-  return result;
+  let data = await AuthController.register(req, res);
+  res.send(data)
 
+  
   // let data = await AuthController.register(req, res)
   // res.send(data)
 })

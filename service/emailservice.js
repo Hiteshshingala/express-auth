@@ -1,20 +1,20 @@
 "use strict";
 const nodemailer = require("nodemailer");
 const constant = require('../Constant');
+var smtpTransport = nodemailer.createTransport({
+    service: 'Gmail',
+    auth: {
+        user: constant.email,
+        pass: constant.emailPassword
+    }
+});
 
 
 module.exports = {
     verifymail: function(req, host, res){
 
-        var smtpTransport = nodemailer.createTransport({
-            service: 'Gmail',
-            auth: {
-                user: constant.email,
-                pass: constant.emailPassword
-            }
-        });
         var mailOptions,link;
-            link= `http://${host}"/users/verify?id="${req.id}`;
+            link= `http://${host}/users/verify?id=${req.id}`;
             mailOptions={
                 to : req.email,
                 subject : "Please confirm your Email account",
@@ -29,16 +29,10 @@ module.exports = {
                  }
         });
     },
-    forgotpasswordmail: function(req, res){
-        var smtpTransport = nodemailer.createTransport({
-            service: 'Gmail',
-            auth: {
-                user: "nodemailer1583@gmail.com",
-                pass: "Ghjkl;123"
-            }
-        });
+    forgotpasswordmail: function(req, host, res){
+        
         var mailOptions,link;
-            link="http://127.0.0.1:3000"+"/users/fogotpassword?Verifytoken="+req.Verifytoken;
+            link=`http://${host}/users/fogotpassword?Verifytoken=${req.Verifytoken}`
             mailOptions={
                 to : req.email,
                 subject : "Please Reset Your Password Using Bottom Link",

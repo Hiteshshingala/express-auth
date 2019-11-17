@@ -207,7 +207,7 @@ module.exports = {
                         res.status(200)
                         resolve('Please check link')
                     } else {
-                        mailer.forgotpasswordmail(users, res)
+                        mailer.forgotpasswordmail(users, req.get('host'),  res)
                         res.status(200)
                         resolve('please check mail and click on link')
                     }
