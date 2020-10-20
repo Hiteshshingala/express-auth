@@ -34,7 +34,7 @@ router.post('/update', AuthToken, async function (req, res, next) {
   res.send(data)
 })
 
-router.post('/chamgepassword', AuthToken, async function (req, res, next) {
+router.post('/changepassword', AuthToken, async function (req, res, next) {
   let data = await AuthController.changepassword(req, res)
   res.send(data)
 })
